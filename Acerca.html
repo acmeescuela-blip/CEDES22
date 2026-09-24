@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CEDES 22 | Presentación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="CEDES.ico" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blanco-puro: #FFFFFF;
+      --gris-fondo: #F8F9FA;
+      --gris-borde: #E9ECEF;
+      --gris-claro: #F1F3F5;
+      --gris-texto: #6C757D;
+      --gris-oscuro: #495057;
+      --negro-suave: #212529;
+      --azul-profundo: #1B3C49;
+      --dorado-marca: #a57650;
+      --dorado-claro: #f8f0e8;
+      --topbar-bg: rgba(27, 60, 73, 0.92);
+      --topbar-text: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--negro-suave);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: url('assets/images/5640747.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      padding-top: 72px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(3px);
+      z-index: 0;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 3rem;
+      position: relative;
+      z-index: 1;
+      background: transparent;
+    }
+
+    /* TOPBAR FIJA - SIEMPRE EN UNA SOLA LÍNEA */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      padding: 0.6rem 1.5rem;
+      background: var(--topbar-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+      transition: all 0.2s ease;
+      min-height: 56px;
+      overflow: hidden;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-shrink: 0;
+    }
+    .topbar-logo {
+      width: 34px;
+      height: 34px;
+      display: block;
+      flex-shrink: 0;
+      filter: none;
+      transition: all 0.2s ease;
+    }
+    .topbar-name {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      font-size: 0.85rem;
+      color: var(--topbar-text);
+      opacity: 0.95;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    /* Contenedor del eslogan - estático con cambio de color */
+    .topbar-mid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 0 0.5rem;
+      height: 1.8rem;
+    }
+
+    .topbar-slogan {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      animation: colorChange 20s ease-in-out infinite;
+    }
+
+    /* Animación de cambio de colores - paleta que combina con el topbar */
+    @keyframes colorChange {
+      0% {
+        color: #FFFFFF;
+      }
+      50% {
+        color: #97e9fa;
+      }
+      100% {
+        color: #FFFFFF;
+      }
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-shrink: 0;
+      min-width: 0;
+      justify-content: flex-end;
+    }
+    .topbar-colectivo {
+      font-size: 0.65rem;
+      background: rgba(255, 255, 255, 0.10);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--topbar-text);
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+    .topbar-date {
+      font-size: 0.6rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    /* HEADER - MISMO TAMAÑO QUE LA TARJETA DE BIENVENIDA */
+    .page-header {
+      text-align: center;
+      margin: 0.5rem 0 2.5rem;
+      padding: 0;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .orn-line {
+      width: 40px;
+      height: 2px;
+      background: var(--dorado-marca);
+      opacity: 0.6;
+    }
+    .orn-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--dorado-marca);
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+    .page-title {
+      font-size: clamp(2rem, 5vw, 2.35rem);
+      font-weight: 700;
+      font-family: 'Space Grotesk', monospace;
+      color: var(--azul-profundo);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .page-sub {
+      font-size: 1rem;
+      color: var(--gris-oscuro);
+      margin-top: 0.3rem;
+      font-weight: 400;
+    }
+    .header-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--dorado-marca);
+      opacity: 0.5;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* TARJETA DE BIENVENIDA - REFERENCIA DE TAMAÑO */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 2.5rem 3rem;
+      margin: 1.5rem 0 2.5rem;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.2s ease;
+    }
+    .glass-card:hover {
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    }
+    .welcome-greeting {
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', monospace;
+      color: var(--azul-profundo);
+      margin-bottom: 1.2rem;
+    }
+    .welcome-greeting span {
+      color: var(--dorado-marca);
+    }
+    .welcome-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--gris-oscuro);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+    .welcome-text strong {
+      color: var(--azul-profundo);
+      font-weight: 600;
+    }
+    .welcome-text ul {
+      list-style: none;
+      padding: 0.5rem 0 0.5rem 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .welcome-text ul li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .welcome-text ul li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--dorado-marca);
+      font-weight: 600;
+    }
+
+    /* CITA ESTILO REVISTA - SIN COMILLAS */
+    .cita-revista {
+      margin: 2.5rem auto;
+      padding: 2.8rem 3.5rem;
+      max-width: 780px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.30);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease;
+    }
+    .cita-revista:hover {
+      transform: scale(1.01);
+    }
+
+    .cita-texto-grande {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--azul-profundo);
+      letter-spacing: -0.3px;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    .cita-texto-grande em {
+      font-style: italic;
+      color: var(--dorado-marca);
+      font-weight: 600;
+    }
+    .cita-autor-destacado {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gris-oscuro);
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.3rem 1.5rem;
+      border-radius: 30px;
+      backdrop-filter: blur(4px);
+    }
+    .cita-autor-destacado span {
+      color: var(--dorado-marca);
+      font-weight: 700;
+    }
+
+    /* BOTONES */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin: 2.5rem 0 2rem;
+    }
+    .btn-primary {
+      background: var(--azul-profundo);
+      border: none;
+      padding: 0.85rem 2.2rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      color: var(--blanco-puro);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.25s;
+      font-size: 0.9rem;
+      letter-spacing: 0.2px;
+      box-shadow: 0 4px 12px rgba(27, 60, 73, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--dorado-marca);
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(165, 118, 80, 0.35);
+    }
+
+    /* FOOTER */
+    .footer-wrap {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    footer {
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(6px);
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: var(--gris-oscuro);
+      font-size: 0.7rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ============================================ */
+    /* RESPONSIVE - TOPBAR SIEMPRE EN UNA LÍNEA    */
+    /* ============================================ */
+
+    /* Hasta 1100px - ajuste del eslogan */
+    @media (max-width: 1100px) {
+      .topbar-slogan {
+        font-size: 0.7rem;
+      }
+      .topbar-mid {
+        height: 1.6rem;
+      }
+    }
+
+    /* Hasta 900px - reducción del eslogan */
+    @media (max-width: 900px) {
+      .topbar-slogan {
+        font-size: 0.65rem;
+      }
+      .topbar-mid {
+        height: 1.5rem;
+      }
+    }
+
+    /* Hasta 769px - reducción progresiva */
+    @media (max-width: 769px) {
+      body { padding-top: 64px; }
+      .topbar { padding: 0.5rem 1.2rem; gap: 0.4rem; min-height: 48px; }
+      .topbar-logo { width: 30px; height: 30px; }
+      .topbar-name { font-size: 0.75rem; }
+      .topbar-slogan { font-size: 0.6rem; }
+      .topbar-mid { height: 1.4rem; }
+      .topbar-colectivo { font-size: 0.6rem; padding: 0.15rem 0.7rem; max-width: 160px; }
+      .topbar-date { font-size: 0.55rem; }
+      
+      .page-header { padding: 2rem 2rem; }
+      .glass-card { padding: 2rem 2rem; }
+    }
+
+    /* Hasta 650px - reducción adicional */
+    @media (max-width: 650px) {
+      .topbar-slogan {
+        font-size: 0.55rem;
+      }
+      .topbar-name {
+        font-size: 0.65rem;
+      }
+      .topbar-mid {
+        height: 1.3rem;
+      }
+    }
+
+    /* Hasta 600px - reducción adicional */
+    @media (max-width: 600px) {
+      body { padding-top: 56px; }
+      .topbar {
+        padding: 0.4rem 1rem;
+        gap: 0.3rem;
+        min-height: 44px;
+      }
+      .topbar-left { gap: 0.4rem; }
+      .topbar-logo { width: 26px; height: 26px; }
+      .topbar-name { font-size: 0.6rem; letter-spacing: -0.2px; }
+      .topbar-slogan { font-size: 0.5rem; }
+      .topbar-mid { height: 1.2rem; }
+      .topbar-right { gap: 0.4rem; }
+      .topbar-colectivo { 
+        font-size: 0.5rem; 
+        padding: 0.12rem 0.6rem; 
+        max-width: 120px;
+      }
+      .topbar-date { font-size: 0.45rem; }
+      
+      .page-header { padding: 1.5rem 1.5rem; }
+      .glass-card { padding: 1.5rem 1.5rem; }
+    }
+
+    /* Hasta 520px - el eslogan se reduce aún más */
+    @media (max-width: 520px) {
+      .topbar-slogan {
+        font-size: 0.45rem;
+        letter-spacing: 0.2px;
+      }
+      .topbar-name {
+        font-size: 0.55rem;
+      }
+      .topbar-mid {
+        height: 1.0rem;
+        padding: 0 0.3rem;
+      }
+      .topbar-colectivo {
+        font-size: 0.45rem;
+        padding: 0.1rem 0.5rem;
+        max-width: 100px;
+      }
+      .topbar-date {
+        font-size: 0.4rem;
+      }
+    }
+
+    /* De 450px a 200px - el logo desaparece, todo lo demás se ajusta */
+    @media (max-width: 450px) {
+      body { padding-top: 48px; }
+      
+      .topbar {
+        padding: 0.3rem 0.6rem;
+        gap: 0.25rem;
+        min-height: 38px;
+      }
+      
+      .topbar-left {
+        gap: 0;
+        flex-shrink: 0;
+      }
+      
+      /* El logo desaparece */
+      .topbar-logo {
+        display: none;
+      }
+      
+      /* El texto TEEA se ajusta progresivamente */
+      .topbar-name {
+        display: block;
+        font-size: clamp(0.4rem, 2vw, 0.55rem);
+        letter-spacing: -0.2px;
+        font-weight: 600;
+        color: var(--topbar-text);
+        opacity: 0.95;
+        white-space: nowrap;
+      }
+      
+      /* El eslogan se ajusta progresivamente */
+      .topbar-slogan {
+        font-size: clamp(0.35rem, 1.8vw, 0.45rem);
+        letter-spacing: 0.1px;
+      }
+      .topbar-mid {
+        height: 0.9rem;
+        padding: 0 0.2rem;
+      }
+      
+      .topbar-right {
+        gap: 0.25rem;
+        flex-shrink: 1;
+        justify-content: flex-end;
+        min-width: 0;
+      }
+      
+      .topbar-colectivo {
+        font-size: clamp(0.3rem, 1.5vw, 0.45rem);
+        padding: 0.08rem 0.35rem;
+        background: rgba(255, 255, 255, 0.10);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 30px;
+        white-space: nowrap;
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .topbar-date {
+        font-size: clamp(0.25rem, 1.2vw, 0.4rem);
+        color: rgba(255, 255, 255, 0.65);
+        padding: 0.05rem 0.15rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      
+      .page-header { 
+        padding: 1.2rem 1rem; 
+        margin: 0.5rem 0 1.5rem;
+      }
+      .glass-card { padding: 1.2rem 1rem; }
+      .cita-revista { padding: 1.5rem 1rem; }
+      .cita-texto-grande { font-size: 1.1rem; }
+      .action-buttons { flex-direction: column; align-items: stretch; }
+      .btn-primary { justify-content: center; }
+      .page { padding: 1rem 0.8rem 2rem; }
+    }
+
+    /* Ajustes adicionales para pantallas muy pequeñas (menos de 320px) */
+    @media (max-width: 320px) {
+      body { padding-top: 38px; }
+      .topbar {
+        padding: 0.2rem 0.3rem;
+        gap: 0.15rem;
+        min-height: 32px;
+      }
+      .topbar-name {
+        font-size: 0.35rem;
+      }
+      .topbar-slogan {
+        font-size: 0.3rem;
+      }
+      .topbar-mid {
+        height: 0.7rem;
+        padding: 0 0.1rem;
+      }
+      .topbar-colectivo {
+        font-size: 0.25rem;
+        padding: 0.05rem 0.25rem;
+        max-width: 55px;
+      }
+      .topbar-date {
+        font-size: 0.2rem;
+      }
+      .topbar-right {
+        gap: 0.15rem;
+      }
+      
+      .page-header { padding: 1rem 0.8rem; }
+      .glass-card { padding: 1rem 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- TOPBAR FIJA -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <img class="topbar-logo" src="assets/images/CEDES_22.png" alt="CEDES 22" onerror="this.style.display='none'">
+        <span class="topbar-name">TEEA 2026-2027</span>
+      </div>
+      
+      <!-- Eslogan estático con cambio de color -->
+      <div class="topbar-mid">
+        <span class="topbar-slogan">"Liberación Ontológica y Reflexividad Territorial para la Construcción Curricular Emancipadora"</span>
+      </div>
+      
+      <div class="topbar-right">
+        <span class="topbar-colectivo" id="topColectivo">Colectivo: <span id="colectivoName">docentes</span></span>
+      </div>
+    </div>
+
+    <!-- HEADER - MISMO TAMAÑO QUE LA TARJETA DE BIENVENIDA -->
+    <div class="page-header">
+      <div class="ornament">
+        <div class="orn-line"></div>
+        <div class="orn-dot"></div>
+        <div class="orn-line r"></div>
+      </div>
+
+      <h1 class="page-title">Presentación</h1>
+      <div class="header-divider"></div>
+    </div>
+
+    <div class="content">
+
+      <!-- TARJETA DE BIENVENIDA con la información integrada -->
+      <div class="glass-card">
+        <div class="welcome-greeting">
+          Bienvenido, <span id="nombreBienvenida">colectivo docente</span>
+        </div>
+        <div class="welcome-text">
+        El Centro de Estudios y Desarrollo Educativo de la Sección 22 (CEDES 22) con la intención de fortalecer la formación y autoformación permanente
+        de los colectivos escolares, comunitarios y de apoyo educativo, a través de la reflexión crítica y construcción colectiva, propone la siguiente herramienta
+        digital de apoyo <em>“Recorrido Curricular por el territorio Oaxaqueño”</em>, para el desarrollo de las <em>Asambleas Pedagógicas</em> 
+        correspondientes al ciclo escolar 2026-2027, las cuales serán aperturadas antes de las fechas marcadas en el Calendario Escolar Alternativo (CEA),
+        con la intención de brindar acceso a los materiales, orientaciones metodológicas y recursos complementarios necesarios para la realización de éstas.<br><br>
+
+        La propuesta busca consolidar en los colectivos el fortalecimiento de la comunalidad y de sus 4 pilares mencionados por Jaime Martínez Luna (2026) 
+        <em>“Territorio, Organización, Trabajo y Disfrute”</em>, retomándolos como espacio de aprendizaje, identidad, interculturalidad, diversidad cultural
+        e identificación de saberes comunitarios, con la intención de fortalecer la construcción curricular partiendo de la realidad social, lingüística, histórica,
+        ambiental y comunitaria que caracterizan al estado de Oaxaca.<br><br>
+
+        <div class="orn-line r"></div><strong>La plataforma digital nos permitirá:</strong><br>
+        <ul>
+            <li>Consultar las fechas programadas para cada Asamblea Pedagógica.</li>
+            <li>Acceder a las orientaciones de trabajo correspondientes.</li>
+            <li>Descargar materiales de apoyo y recursos bibliográficos.</li>
+            <li>Obtener orientaciones metodológicas para el desarrollo de las actividades.</li>
+            <li>Compartir constructos generados durante las sesiones.</li>
+            <li>Dar seguimiento a los acuerdos y compromisos establecidos por los colectivos escolares, comunitarios y de apoyo educativo.</li>
+        </ul><br>
+
+         <strong>Las Asambleas Pedagógicas promoverán la reflexión en torno a los siguientes aspectos:</strong><br>
+        <ul>
+            <li>Conformación y consolidación colectiva.</li>
+            <li>Re-construcción del ACR para el fortalecimiento del PE.</li>
+            <li>Re-construcción del currículum emancipador.</li>
+            <li>Organización para la compartencia de experiencias curriculares emancipadoras.</li>
+            <li>Sistematización del PE y la propuesta curricular emancipadora.</li>
+            <li>Presentación de la “sistematización curricular emancipadora” a través de la revista.</li>
+            <li>Valoración del PE.</li>
+        </ul><br>
+
+         <strong>Para orientar el desarrollo de las Asambleas Pedagógicas de los colectivos, se propone lo siguiente:</strong><br>
+        <ul>
+            <li>1.	Revisar previamente los materiales disponibles en la plataforma.</li>
+            <li>2.	Organizar los recursos necesarios.</li>
+            <li>3.	La participación de todos los integrantes.</li>
+            <li>4.	Recuperar experiencias y saberes (sistematización).</li>
+            <li>5.	Registrar acuerdos, reflexiones y constructos de cada sesión.</li>
+            <li>6.	Dar seguimiento a los principios y compromisos establecidos en el colectivo.</li>
+        </ul><div class="orn-line r"></div><br>
+
+      La herramienta digital constituye un recurso de acompañamiento para el trabajo colectivo de las y los trabajadores de la educación, orientado a la construcción
+      curricular desde las realidades, saberes y territorios de Oaxaca, contribuirá a la reflexión colectiva, al diálogo de saberes y al tejido de experiencias educativas,
+      que reconozcan la diversidad cultural y la comunalidad como fundamentos para la transformación de la práctica educativa.<br><br>
+      El compromiso y participación de los diferentes colectivos serán elementos indispensables para el “Recorrido Curricular por el Territorio Oaxaqueño”.<br><br>
+
+        </div>
+        <div class="welcome-text">
+          
+        </div>
+      </div>
+
+      <!-- CITA ESTILO REVISTA - SIN COMILLAS -->
+      <div class="cita-revista">
+        <p class="cita-texto-grande">
+        </p>
+        <span class="cita-autor-destacado">
+          - CEDES 22 · Sección XXII · Oaxaca -
+        </span>
+      </div>
+
+      <!-- BOTONES DE ACCIÓN - solo queda el botón principal -->
+      <div class="action-buttons">
+        <a href="Oaxaca-regiones1.html" class="btn-primary">
+          Ingresar
+          <span>→</span>
+        </a>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <script>
+    (function() {
+      const dateEl = document.getElementById('topDate');
+      if (dateEl) {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        dateEl.textContent = now.toLocaleDateString('es-MX', options);
+      }
+
+      let colectivo = sessionStorage.getItem('colectivo');
+      if (!colectivo) {
+        colectivo = localStorage.getItem('colectivo_nombre');
+        if (!colectivo) {
+          colectivo = 'colectivo docente';
+        }
+      }
+
+      const colectivoSpan = document.getElementById('colectivoName');
+      const bienvenidaSpan = document.getElementById('nombreBienvenida');
+      if (colectivoSpan) colectivoSpan.textContent = colectivo;
+      if (bienvenidaSpan) bienvenidaSpan.textContent = colectivo;
+    })();
+  </script>
+</body>
+</html>

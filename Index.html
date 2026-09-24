@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CEDES 22 | Entrar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="CEDES.ico" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blanco-puro: #FFFFFF;
+      --gris-fondo: #F8F9FA;
+      --gris-borde: #E9ECEF;
+      --gris-claro: #F1F3F5;
+      --gris-texto: #6C757D;
+      --gris-oscuro: #495057;
+      --negro-suave: #212529;
+      --azul-profundo: #1B3C49;
+      --dorado-marca: #a57650;
+      --dorado-claro: #f8f0e8;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--negro-suave);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: url('assets/images/5640747.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      padding-top: 0;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(3px);
+      z-index: 0;
+    }
+
+    /* SCREEN PRINCIPAL - CONTENEDOR */
+    .screen {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+
+    /* CONTENIDO SIN TARJETA */
+    .content-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem;
+    }
+
+    .logo-wrapper {
+      margin-bottom: 1.2rem;
+    }
+    .logo-wrapper img {
+      width: 400px;
+      height: auto;
+      filter: drop-shadow(0 0 20px rgba(165, 118, 80, 0.2));
+      transition: filter 0.3s ease;
+    }
+    .logo-wrapper img:hover {
+      filter: drop-shadow(0 0 30px rgba(165, 118, 80, 0.35));
+    }
+
+    .inst-name {
+      font-family: 'Space Grotesk', monospace;
+      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--azul-profundo);
+      margin-bottom: 0.1rem;
+    }
+
+    .inst-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gris-texto);
+      margin-bottom: 1.2rem;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .orn-line {
+      width: 40px;
+      height: 2px;
+      background: var(--dorado-marca);
+      opacity: 0.6;
+    }
+    .orn-line.r {
+      background: var(--dorado-marca);
+      opacity: 0.6;
+    }
+    .orn-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--dorado-marca);
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', monospace;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--azul-profundo);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+
+    .h1-sub {
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: var(--gris-oscuro);
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .header-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--dorado-marca);
+      opacity: 0.5;
+      margin: 0.5rem auto 1.5rem;
+      border-radius: 2px;
+    }
+
+    /* INPUT Y BOTÓN */
+    .input-group {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .input-field {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--gris-borde);
+      border-radius: 2rem;
+      padding: 0.9rem 1.2rem;
+      color: var(--negro-suave);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 1.2rem;
+    }
+    .input-field::placeholder {
+      color: var(--gris-texto);
+      opacity: 0.7;
+    }
+    .input-field:focus {
+      border-color: var(--dorado-marca);
+      box-shadow: 0 0 0 3px rgba(165, 118, 80, 0.15);
+    }
+
+    .btn-ingresar {
+      width: 60%;
+      padding: 0.9rem 2rem;
+      background: var(--azul-profundo);
+      color: var(--blanco-puro);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 12px rgba(27, 60, 73, 0.25);
+    }
+    .btn-ingresar:hover {
+      background: var(--dorado-marca);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(165, 118, 80, 0.35);
+    }
+    .btn-ingresar:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .error-msg {
+      color: #dc3545;
+      font-size: 0.82rem;
+      margin-top: 0.3rem;
+      display: none;
+      font-style: italic;
+    }
+    .error-msg.show {
+      display: block;
+    }
+
+    /* BOTÓN SALTAR */
+    #btnSkipReel {
+      position: fixed;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      padding: 0.7rem 2rem;
+      background: rgba(27, 60, 73, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 40px;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    #btnSkipReel.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    #btnSkipReel:hover {
+      background: var(--dorado-marca);
+      transform: translateX(-50%) scale(1.02);
+      box-shadow: 0 0 30px rgba(165, 118, 80, 0.25);
+    }
+
+    /* COLLAGE - estilos */
+    .collage-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(27, 60, 73, 0.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .6s ease;
+      backdrop-filter: blur(6px);
+      padding: 2rem;
+    }
+    .collage-overlay.visible {
+      opacity: 1;
+    }
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 75vh;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.2);
+      padding: 8px;
+    }
+    .collage-grid img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 2px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s ease;
+    }
+    .collage-grid img:hover {
+      transform: scale(1.05);
+      z-index: 2;
+      border-color: var(--dorado-marca);
+    }
+
+    /* Para pantallas pequeñas: menos columnas */
+    @media (max-width: 600px) {
+      .collage-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        padding: 5px;
+      }
+    }
+    @media (max-width: 400px) {
+      .collage-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px;
+        padding: 4px;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 769px) {
+      .screen { padding: 1.5rem 1.5rem 2rem; }
+      .content-center { padding: 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .screen { padding: 1.2rem 1.2rem 2rem; }
+      .content-center { padding: 1rem; }
+      .btn-ingresar { width: 100%; }
+      .logo-wrapper img { width: 100px; }
+    }
+
+    @media (max-width: 450px) {
+      .screen { padding: 1rem 0.8rem 2rem; }
+      .content-center { padding: 0.8rem; }
+      .logo-wrapper img { width: 80px; }
+      .btn-ingresar { font-size: 0.8rem; padding: 0.75rem 1.5rem; }
+    }
+
+    @media (max-width: 320px) {
+      .screen { padding: 0.8rem 0.5rem 1.5rem; }
+      .content-center { padding: 0.5rem; }
+      .logo-wrapper img { width: 60px; }
+    }
+
+    /* ANIMACIONES */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ SCREEN 1: FORMULARIO ═══ -->
+  <div class="screen" id="screen-welcome">
+    <div class="content-center">
+      <div class="logo-wrapper">
+        <img src="assets/images/TEEA.png" alt="CEDES 22">
+      </div>
+
+
+
+      <div class="ornament">
+        <div class="orn-line"></div>
+        <div class="orn-dot"></div>
+        <div class="orn-line r"></div>
+      </div>
+
+      <h1>Bienvenid@</h1>
+      <div class="header-divider"></div>
+      <p class="h1-sub">Ingresa el nombre del colectivo para continuar</p>
+
+      <div class="input-group">
+        <input
+          class="input-field"
+          id="nombreColectivo"
+          type="text"
+          placeholder="Colectivo..."
+          autocomplete="off"
+          maxlength="80"
+        >
+        <p class="error-msg" id="errorMsg">Por favor escribe el nombre del colectivo para continuar.</p>
+        <button class="btn-ingresar" id="btnIngresar" onclick="mostrarBienvenida()">
+          Ingresar →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BOTÓN SALTAR ═══ -->
+  <button id="btnSkipReel">Saltar →</button>
+
+  <script>
+    // ── RUTAS DE TUS FOTOS ──────────────────────────
+    const FOTOS = [
+      'assets/images/Foto01.jpeg',
+      'assets/images/Foto02.jpeg',
+      'assets/images/Foto03.jpeg',
+      'assets/images/Foto04.jpeg',
+      'assets/images/Foto05.jpeg',
+      'assets/images/Foto06.jpeg',
+      'assets/images/Foto07.jpeg',
+      'assets/images/Foto08.jpeg',
+      'assets/images/Foto09.jpeg',
+      'assets/images/Foto10.jpeg',
+      'assets/images/Foto11.jpeg',
+      'assets/images/Foto12.jpg',
+    ];
+    // ────────────────────────────────────────────────
+
+    // Referencias
+    const inputNombre = document.getElementById('nombreColectivo');
+    const errorMsg = document.getElementById('errorMsg');
+    const btnIngresar = document.getElementById('btnIngresar');
+    const btnSkip = document.getElementById('btnSkipReel');
+
+    inputNombre.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') mostrarBienvenida();
+    });
+
+    let skipReel = false;
+    let collageMostrado = false;
+
+    function mostrarBienvenida() {
+      const nombre = inputNombre.value.trim();
+
+      if (!nombre) {
+        errorMsg.classList.add('show');
+        inputNombre.focus();
+        inputNombre.style.borderColor = '#dc3545';
+        return;
+      }
+
+      errorMsg.classList.remove('show');
+      inputNombre.style.borderColor = '';
+
+      sessionStorage.setItem('colectivo', nombre);
+
+      const s1 = document.getElementById('screen-welcome');
+      s1.style.transition = 'opacity .4s ease';
+      s1.style.opacity = '0';
+      setTimeout(() => { s1.style.display = 'none'; }, 400);
+
+      setTimeout(() => iniciarReel(), 300);
+    }
+
+    // ── REEL DE FOTOS ────────────────────────────────
+    function iniciarReel() {
+      const DURACION_TOTAL  = 18000;
+      const duracionPorFoto = DURACION_TOTAL / FOTOS.length;
+      let currentIndex = 0;
+      let timeoutId = null;
+      skipReel = false;
+      collageMostrado = false;
+
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `
+        position: fixed; inset: 0; z-index: 9998;
+        background: rgba(27, 60, 73, 0.92);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        opacity: 0; transition: opacity .18s ease;
+        backdrop-filter: blur(6px);
+      `;
+
+      const img = document.createElement('img');
+      img.style.cssText = `
+        max-width: 90%; max-height: 80vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0,0,0,.6);
+        opacity: 0; transition: opacity .4s ease;
+        border: 1px solid rgba(255,255,255,0.15);
+      `;
+
+      const barWrap = document.createElement('div');
+      barWrap.style.cssText = `
+        position: absolute; bottom: 2rem;
+        left: 5%; right: 5%;
+        display: flex; gap: 6px;
+      `;
+
+      const barFills = FOTOS.map(() => {
+        const track = document.createElement('div');
+        track.style.cssText = `
+          flex: 1; height: 3px; border-radius: 3px;
+          background: rgba(255,255,255,.15); overflow: hidden;
+        `;
+        const fill = document.createElement('div');
+        fill.style.cssText = `
+          width: 0%; height: 100%;
+          background: var(--dorado-marca, #a57650); transition: none;
+        `;
+        track.appendChild(fill);
+        barWrap.appendChild(track);
+        return fill;
+      });
+
+      overlay.appendChild(img);
+      overlay.appendChild(barWrap);
+      document.body.appendChild(overlay);
+
+      setTimeout(() => {
+        btnSkip.classList.add('show');
+      }, 500);
+
+      function irAAcerca() {
+        // Ocultar botón skip
+        btnSkip.classList.remove('show');
+        // Eliminar overlay del reel si existe
+        if (overlay && overlay.parentNode) {
+          overlay.style.opacity = '0';
+          setTimeout(() => {
+            if (overlay.parentNode) overlay.remove();
+          }, 300);
+        }
+        // Redirigir directamente
+        setTimeout(() => {
+          window.location.href = 'Acerca.html';
+        }, 400);
+      }
+
+      function mostrarCollage() {
+        if (collageMostrado) return;
+        collageMostrado = true;
+        
+        // Eliminar el overlay del reel
+        if (overlay.parentNode) overlay.remove();
+        btnSkip.classList.remove('show');
+
+        // Crear el collage
+        const collageOverlay = document.createElement('div');
+        collageOverlay.className = 'collage-overlay';
+        
+        const grid = document.createElement('div');
+        grid.className = 'collage-grid';
+
+        // Añadir todas las fotos al collage
+        FOTOS.forEach(src => {
+          const imgElement = document.createElement('img');
+          imgElement.src = src;
+          imgElement.alt = 'Foto del evento';
+          imgElement.loading = 'lazy';
+          grid.appendChild(imgElement);
+        });
+
+        collageOverlay.appendChild(grid);
+        document.body.appendChild(collageOverlay);
+
+        // Mostrar con animación
+        requestAnimationFrame(() => {
+          collageOverlay.classList.add('visible');
+        });
+
+        // Esperar y redirigir
+        setTimeout(() => {
+          collageOverlay.style.opacity = '0';
+          setTimeout(() => {
+            window.location.href = 'Acerca.html';
+          }, 600);
+        }, 3000);
+      }
+
+      function finalizarReel() {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
+        mostrarCollage();
+      }
+
+      // Botón Saltar → va directo a Acerca.html
+      btnSkip.onclick = function() {
+        if (!skipReel) {
+          skipReel = true;
+          irAAcerca();
+        }
+      };
+
+      requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+
+      function mostrarFoto(i) {
+        if (skipReel) return;
+
+        if (i >= FOTOS.length) {
+          finalizarReel();
+          return;
+        }
+
+        currentIndex = i;
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = FOTOS[i];
+          img.onload = () => { img.style.opacity = '1'; };
+          if (img.complete) img.style.opacity = '1';
+        }, i === 0 ? 0 : 350);
+
+        const fill = barFills[i];
+        fill.style.transition = 'none';
+        fill.style.width = '0%';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            fill.style.transition = `width ${duracionPorFoto}ms linear`;
+            fill.style.width = '100%';
+          });
+        });
+
+        timeoutId = setTimeout(() => mostrarFoto(i + 1), duracionPorFoto);
+      }
+
+      timeoutId = setTimeout(() => mostrarFoto(0), 400);
+    }
+  </script>
+</body>
+</html>
